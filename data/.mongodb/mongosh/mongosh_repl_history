@@ -1,0 +1,6 @@
+exit 
+cd ...
+show dbs
+db.products.find();
+db.products.find({ name: "product 1" });
+use("store");
