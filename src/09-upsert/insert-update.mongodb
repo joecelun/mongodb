@@ -1,0 +1,48 @@
+use("store")
+
+db.iot.insertOne({
+  sensor: "A001",
+  date: "2022-01-03",
+  readings: [5248]
+})
+
+
+db.iot.updateOne({
+  sensor: "A001",
+  date: "2022-01-03"
+}, {
+  $pop: {
+    readings: 1
+  }
+})
+
+
+db.iot.updateOne({
+  sensor: "A001",
+  date: "2022-01-03"
+}, {
+  $push: {
+    readings: 2864
+  }
+})
+
+
+db.iot.updateOne(
+  { device: "thermostat" },
+  {
+    $set: { status: "active", temperature: 22 },
+    $currentDate: { lastModified: true }
+  },
+  { upsert: true }
+)
+
+db.iot.updateOne(
+  { device: "lightbulb" },
+  {
+    $set: { status: "inactive", brightness: 70 },
+    $currentDate: { lastModified: true }
+  },
+  { upsert: true }
+)
+
+db.iot.find()
