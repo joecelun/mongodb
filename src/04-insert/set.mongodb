@@ -1,0 +1,33 @@
+use("sample_training");
+
+
+db.zips.find({city: "CLEVELAND"});
+
+db.zips.updateMany(
+  { city: "CLEVELAND" },
+  { $set: {
+      tag: ["cle", "lake", "ohio"]
+    }
+  }
+);
+
+
+
+db.zips.updateMany(
+  { city: "CLEVELAND" },
+  { $rename: {
+      tag: "tags"
+    }
+  }
+);
+
+db.zips.updateMany(
+  { city: "CLEVELAND" },
+  { $unset: {
+      tags: ""
+    }
+  }
+);
+
+
+
